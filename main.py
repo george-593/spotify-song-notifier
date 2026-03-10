@@ -1,6 +1,7 @@
 import time
 
 from applescript import Applescript
+import exceptions
 
 
 class Main:
@@ -30,9 +31,12 @@ class Main:
                 ):
                     # We have a new song playing!
                     print("New song!")
+                    self.trigger_track_change()
 
                 self.previous_track = current_track
-
+            except exceptions.SpotifyNotRunningError:
+                print("Spotify is not running, trying again in 10s")
+                wait_time = 10
             except Exception as e:
                 print(f"Unable to get track: {e}")
                 wait_time = 10

@@ -1,5 +1,6 @@
 import subprocess
 from models.current_track import CurrentTrack
+import exceptions
 
 
 class Applescript:
@@ -28,10 +29,17 @@ end tell
 
     def get_current_track(self):
         script = """
-tell application "Spotify"
-    return (name of current track) & "||" & (artist of current track) & "||" & (album of current track) & "||" & (duration of current track) & "||" & (spotify url of current track) & "||" & (player position)
-end tell
+if application "Spotify" is running then
+    tell application "Spotify"
+        return (name of current track) & "||" & (artist of current track) & "||" & (album of current track) & "||" & (duration of current track) & "||" & (spotify url of current track) & "||" & (player position)
+    end tell
+else
+    return ""
+end if
     """
-
         result = self._run_applescript(script)
+
+        if not result:
+            raise exceptions.SpotifyNotRunningError()
+
         return CurrentTrack.from_spotify_output(result)
