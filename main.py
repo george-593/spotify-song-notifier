@@ -2,13 +2,14 @@ import time
 
 from applescript import Applescript
 import exceptions
+from notifications import Notifications
 
 
 class Main:
     def __init__(self):
         self.applescript = Applescript()
+        self.notifications = Notifications()
         self.previous_track = None
-        self.main()
 
     def trigger_track_change(self):
         pass
@@ -31,7 +32,9 @@ class Main:
                 ):
                     # We have a new song playing!
                     print("New song!")
-                    self.trigger_track_change()
+                    self.notifications.send_notification(
+                        self.previous_track, current_track
+                    )
 
                 self.previous_track = current_track
             except exceptions.SpotifyNotRunningError:
@@ -44,4 +47,5 @@ class Main:
             time.sleep(wait_time)
 
 
-main = Main()
+if __name__ == "__main__":
+    Main().main()
