@@ -18,7 +18,7 @@ A macOS Python utility that watches your currently playing Spotify track and sho
 
 ## Setup
 
-1. Create and activate a virtual environment:
+1. Create and activate a virtual environment.
 2. Install dependencies:
 
 ```bash
@@ -47,13 +47,4 @@ If `SPOTIFY_PLAYLIST_ID` is missing, notifications still work, but playlist adds
 python main.py
 ```
 
-On first run, Spotipy may open a browser window for Spotify OAuth authorization. A token cache file (`.cache`) will be created in the project directory.
-
-## Usage
-
-1. Start the script.
-2. Play music in Spotify.
-3. When a new track starts, you will get a notification showing:
-- previous song
-- current song
-4. Click **Add previous to Playlist** to add the previous track to `SPOTIFY_PLAYLIST_ID`.
+On first run, Spotipy may open a browser window for Spotify OAuth authorization.
