@@ -1,12 +1,12 @@
 class CurrentTrack:
     def __init__(
-        self, name: str, artist: str, album: str, duration: int, url: str, position: str
+        self, name: str, artist: str, album: str, duration: int, uri: str, position: str
     ):
         self.name = name
         self.artist = artist
         self.album = album
         self.duration = duration
-        self.url = url
+        self.uri = uri
         self.position = position
 
     @classmethod
@@ -20,7 +20,7 @@ class CurrentTrack:
             artist=parts[1],
             album=parts[2],
             duration=int(parts[3]),
-            url=parts[4],
+            uri=parts[4],
             position=parts[5],
         )
 

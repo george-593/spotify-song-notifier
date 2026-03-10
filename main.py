@@ -1,14 +1,22 @@
 import time
+import exceptions
+import os
+from dotenv import load_dotenv
 
 from applescript import Applescript
-import exceptions
 from notifications import Notifications
+from spotify_api import SpotifyAPI
 
 
 class Main:
     def __init__(self):
+        load_dotenv()
+
+        self.playlist_id = os.getenv("SPOTIFY_PLAYLIST_ID")
+
         self.applescript = Applescript()
-        self.notifications = Notifications()
+        self.spotify = SpotifyAPI(self.playlist_id)
+        self.notifications = Notifications(self.spotify)
         self.previous_track = None
 
     def trigger_track_change(self):
@@ -28,10 +36,10 @@ class Main:
 
                 if (
                     self.previous_track is not None
-                    and current_track.url != self.previous_track.url
+                    and current_track.uri != self.previous_track.uri
                 ):
                     # We have a new song playing!
-                    print("New song!")
+                    print("New song detected")
                     self.notifications.send_notification(
                         self.previous_track, current_track
                     )
