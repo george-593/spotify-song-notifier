@@ -23,3 +23,11 @@ class CurrentTrack:
             url=parts[4],
             position=parts[5],
         )
+
+    @property
+    def duration_seconds(self):
+        return self.duration // 1000
+
+    @property
+    def time_remaining(self):
+        return int(self.duration_seconds - float(self.position))
