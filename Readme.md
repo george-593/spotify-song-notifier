@@ -48,3 +48,9 @@ python main.py
 ```
 
 On first run, Spotipy may open a browser window for Spotify OAuth authorization.
+
+## Improvements
+- Let user select paylist (requires menu bar)
+- Menu bar icon with settings UI
+- Launch on login
+- Duplicate detection
