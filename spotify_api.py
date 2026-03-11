@@ -17,6 +17,17 @@ class SpotifyAPI:
             print("Playlist ID is not set. Cannot add track to playlist")
             return
 
-        print(track.uri)
+        # Check for duplicate tracks
+        exiting = self.spotipy.playlist_items(self.playlist_id)
+
+        # Should never be none but shuts up IDE
+        if exiting is None:
+            return
+
+        for song in exiting["items"]:
+            if track.uri == song["item"]["uri"]:
+                print(f"Duplicate track detected. Not added: {track.name}")
+                return
+
         result = self.spotipy.playlist_add_items(self.playlist_id, [track.uri])
         print(result)
