@@ -51,6 +51,13 @@ class SpotifyNotifierApp(rumps.App):
             print(
                 f"{current_track.name} time remaining: {current_track.time_remaining}"
             )
+
+            # Update menu bar if this is first iteration (no self.track)
+            if self.track is None:
+                self.track_item.title = (
+                    f"{current_track.name} by {current_track.artist}"
+                )
+
             if self.track is not None and current_track.uri != self.track.uri:
                 # We have a new song playing!
                 print("New song detected")
