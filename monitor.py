@@ -8,7 +8,7 @@ from notifications import Notifications
 from spotify_api import SpotifyAPI
 
 
-class Main:
+class Monitor:
     def __init__(self):
         load_dotenv()
 
@@ -55,5 +55,6 @@ class Main:
             time.sleep(wait_time)
 
 
+# To run the application without taskbar
 if __name__ == "__main__":
-    Main().main()
+    Monitor().main()
