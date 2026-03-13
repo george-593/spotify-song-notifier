@@ -64,9 +64,6 @@ class SpotifyNotifierApp(rumps.App):
             print(f"Unable to get track: {e}")
             self.wait_time = 10
 
-    def quit_app(self, sender):
-        rumps.quit_application()
-
 
 if __name__ == "__main__":
     app = SpotifyNotifierApp()
