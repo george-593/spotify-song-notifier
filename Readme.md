@@ -8,6 +8,7 @@ A macOS Python utility that watches your currently playing Spotify track and sho
 - Detects track changes in near real-time (1s polling)
 - Sends native macOS notifications with an action button
 - Adds the previous track to a configured Spotify playlist via Spotipy
+- Menu bar icon that displays the current track
 
 ## Requirements
 
@@ -44,13 +45,7 @@ If `SPOTIFY_PLAYLIST_ID` is missing, notifications still work, but playlist adds
 ## How To Run
 
 ```bash
-python main.py
+python app.py
 ```
 
 On first run, Spotipy may open a browser window for Spotify OAuth authorization.
-
-## Improvements
-- Let user select paylist (requires menu bar)
-- Menu bar icon with settings UI
-- Launch on login
-- Duplicate detection
