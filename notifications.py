@@ -9,9 +9,7 @@ class Notifications:
     def __init__(self, spotify: SpotifyAPI):
         self.spotify = spotify
 
-    def send_notification(
-        self, previous_track: CurrentTrack, current_track: CurrentTrack
-    ) -> None:
+    def send_notification(self, previous_track, current_track: CurrentTrack) -> None:
         notification = client.create_notification(
             title="New Song Playing",
             text=f"Previous Song: {previous_track.name} by {previous_track.artist}\nCurrent Song: {current_track.name} by {current_track.artist}",
